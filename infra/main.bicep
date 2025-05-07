@@ -63,6 +63,8 @@ var _keyVaultName = !empty(keyVaultName) ? keyVaultName : '${_abbrs.keyVaultVaul
 var _tags = {
   // Tag all resources with the environment name.
   'azd-env-name': environmentName
+  Department: 'COE'
+  Owner: 'Gerhard Groenewald'
 }
  
 // Organize resources in a resource group
