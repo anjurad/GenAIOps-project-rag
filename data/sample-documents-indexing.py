@@ -1,3 +1,6 @@
+import sys
+import pathlib
+from pathlib import Path
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -27,6 +30,10 @@ from azure.search.documents.indexes.models import (
 )
 from typing import List, Dict
 from openai import AzureOpenAI
+
+# Add the parent directory/ src to the system path
+src_path = Path(__file__).resolve().parents[1] / "src"
+sys.path.insert(0, str(src_path))          # put it first so it wins tie-breaks
 
 from azure_config import AzureConfig 
 from azure.identity import DefaultAzureCredential
@@ -157,7 +164,8 @@ if __name__ == "__main__":
     print(f"index {index_name} created")
 
     print(f"indexing documents")
-    docs = gen_documents("data/sample-documents.csv")
+    # docs = gen_documents("data/sample-documents.csv")
+    docs = gen_documents("./sample-documents.csv")
     search_client = SearchClient(
         endpoint=rag_search,
         index_name=index_name,
